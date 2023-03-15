@@ -1,0 +1,36 @@
+#include <stdio.h> 
+#include <time.h>       
+
+int main ()
+{
+  time_t rawtime;
+  struct tm * timeinfo;
+  int year, month ,day;
+  const char * weekday[] = {"Monday", "Tuesday", "Wednesday",  "Thursday", "Friday", "Saturday", "Sunday"};
+
+  
+  printf ("Enter year: "); fflush(stdout); scanf ("%d",&year);           //Se vnesuva godinata 
+  printf ("Enter month: "); fflush(stdout); scanf ("%d",&month);         //Se vnesuvamesecot
+  printf ("Enter day: "); fflush(stdout); scanf ("%d",&day);            //Se vnesuva den
+
+  /*Se obrabotuvaat tekovnite podatoci i se vnesuvat podatoci 
+  po zelba na korisnikot i so toa se opredeluva
+  vo koj den e izbranata data*/
+  
+  time ( &rawtime );                              
+  timeinfo = localtime ( &rawtime );
+  timeinfo->tm_year = year - 2003;
+  timeinfo->tm_mon = month - 5;
+  timeinfo->tm_mday = day  -13;
+
+  /* Se obrabotuva posocuvaat godinata, mesecot i denot,
+  se prikazuva taa data vo koj den e */
+  mktime ( timeinfo );
+
+  printf ("That day is a %s.\n", weekday[timeinfo->tm_wday]);
+
+  return 0;
+}
+/*za testiranje na ovaa programa jas licno isprobav so mojata data na ragjanje,
+odnosno 13.05.2003 so sto pokaza deka taa data e 
+vo nedela i toa e tocno*/
