@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define CARDS 52
+#define FACES 13
+
+// se pravi struktura na kartite 
+struct card {
+   const char *face; // definiranje na pokazuvac na izgledot na kartata
+   const char *suit; // definiranje na vidot na kartata
+};
+
+typedef struct card Card; // new type name for struct card
+
+// definiranje prototipovi
+void fillDeck( Card * const wDeck, const char * wFace[],
+   const char * wSuit[] );
+void shuffle( Card * const wDeck );
+void deal( const Card * const wDeck );
+
+int main( void )
+{
+   Card deck[ CARDS ]; // se definira niza od karti
+
+   // tuka se definiraat vidovite na karti na pakazuvacot za izgledot na kartata
+   const char *face[] = { "Ace", "Deuce", "Three", "Four", "Five",
+      "Six", "Seven", "Eight", "Nine", "Ten",
+      "Jack", "Queen", "King"};
+
+   // tuka se definira vidovite na karti na pokazuvacot na vidovite na karti 
+   const char *suit[] = { "Hearts", "Diamonds", "Clubs", "Spades"};
+
+   srand( time( NULL ) ); // naredba za meshanje na karti
+
+   fillDeck( deck, face, suit ); 
+   shuffle( deck ); 
+   deal( deck ); 
+} 
+
+// definiranje mesto na stringot od vidot na kartata
+void fillDeck( Card * const wDeck, const char * wFace[],
+   const char * wSuit[] )
+{
+   size_t i; 
+
+   // postavuvanje jamka odnosno izbirannje odredeni kati kade sto se zapocnuva od pocetok 
+   for ( i = 0; i < CARDS; ++i ) {
+      wDeck[ i ].face = wFace[ i % FACES ];
+      wDeck[ i ].suit = wSuit[ i / FACES ];
+   } 
+} 
+
+// meshanje na karti
+void shuffle( Card * const wDeck )
+{
+   size_t i; // ovaa promenliva jaa obelezuva odbranata karta i ima uloga na brojac
+   size_t j; // ovaa promenliva e namestena random i ima uloga da izberi random karta
+   Card temp; // definiranje struktura na karti
+
+   // postavuvanje jamka za izbiranje slucajna random karta
+   for ( i = 0; i < CARDS; ++i ) {
+      j = rand() % CARDS; // 
+      temp = wDeck[ i ];
+      wDeck[ i ] = wDeck[ j ];
+      wDeck[ j ] = temp;
+   } 
+}
+
+// pordreduvanje na karti
+void deal( const Card * const wDeck )
+{
+   size_t i; // promenliva i kako brojac
+
+   // podreduvanje 
+   for ( i = 0; i < CARDS; ++i ) {
+      printf( "%5s of %-8s%s", wDeck[ i ].face, wDeck[ i ].suit,
+         ( i + 1 ) % 4 ? "  " : "\n" );
+   } 
+} 
