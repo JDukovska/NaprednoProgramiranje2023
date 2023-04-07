@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+int add(int a, int b) {
+return a + b;
+}
+int subtract(int a, int b) {
+return a - b;
+}
+int calculate(int a, int b, int (*operation)(int, int)) {
+return operation(a, b);
+}
+int main() {
+int a = 10, b = 5;
+int (*op)(int, int);
+op = &add;
+int sum = calculate(a, b, op);
+cout << "Sum of " << a << " and " << b << " is " << sum << endl;
+op = &subtract;
+int diff = calculate(a, b, op);
+cout << "Difference between " << a << " and " << b << " is " << diff << endl;
+
+div_t result1 = div(10, 2);
+
+cout << "Quotient of = 10/2 = " << result1.quot << endl;
+cout << "Remainder of 10/2 =  " << result1.rem << endl;
+  
+int x='J';
+cout << "ASCII Value of " << x << " is " << int(x);
+
+int y='D';
+cout << "ASCII Value of " << y << " is " << int(y);
+
+return 0;
+}
