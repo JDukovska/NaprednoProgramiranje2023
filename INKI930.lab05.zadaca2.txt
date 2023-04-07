@@ -1,0 +1,25 @@
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <cstring>
+using namespace std;
+int main(int argc, char *argv[])
+{
+char pesna[100];
+cout<<"*****************************************"<<endl;
+strcpy (pesna, "Woman - Doja Cat");
+char *pokpol=&pesna[0];
+cout<<"pesna: " <<pesna<<endl; 
+cout<<"cela sodrzina-:"<< pokpol<<endl; 
+cout<< "*cela sodrzina"<<*pokpol <<endl; 
+cout<<"adresa na celata sodrzina :" << (char*)pokpol<<endl; 
+
+cout<<"*****************************************"<<endl;
+pokpol+=17; 
+cout<<"premestuvanje na sodrzina+17 :" <<endl;
+cout<<"sodrzina:"<<pokpol <<endl; 
+cout<<"*sodrzina: "<<*pokpol<<endl;
+cout<< "adresa na sodrzinata :"<<(char*)pokpol<<endl;
+system("PAUSE");
+return EXIT_SUCCESS;
+}
