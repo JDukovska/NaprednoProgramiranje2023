@@ -1,0 +1,104 @@
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
+using namespace std;
+class date
+{
+private:
+int day, month, year;
+public:
+date(){}
+friend void operator>>(istream &in, date &d); 
+friend void operator<<(ostream &out, date &d) /*Vo ovaa funkcija se skladiraat datata koja sto e vnesena vo 
+kodot i datata sto ke se vnesi vo konzolata*/
+
+{
+out<<"\n Date : ";
+out<<d.day;
+out<<"/";
+out<<d.month;
+out<<"/";
+out<<d.year;
+}
+~date(){}
+};
+void operator>>(istream &in, date &d)
+/* Funkcijata prijatel e definirna kako klasa nadvor od opsegot,no ima pravo da pristapi na site vnatreshni i nadvoreshni
+elementi na taa klasa.*/
+{
+cout<<"\n Enter Day : ";
+in>>d.day;
+cout<<"\n Enter Month : ";
+in>>d.month;
+cout<<"\n Enter Year : ";
+cin>>d.year; //tuka se vnesuva den, mesec i godina
+cout<<"\n ------------------";
+switch(d.month)
+{
+
+case 1: //Januari
+case 3: //Mart
+case 5: //Maj
+case 7: //Juli
+case 8: //Avgust
+case 10: //Oktomvri
+case 12: //Dekemvri
+if(d.day>31) /*postavuvanje uslov i kazuvanje deka ovie meseci imaat 31 den i
+dokoku se vnesi drug den se ispishuva 'invalid days'*/
+{
+cout<<"\n Invalid Days ";
+exit(0);
+}
+break;
+case 4: //April
+case 6: //Juni
+case 9: //Septemvri
+case 11: //Noemvri
+if(d.day>30) /*postavuvanje uslov i kazuvanje deka ovie meseci imaat 30 den i
+dokoku se vnesi drug den se ispishuva 'invalid days'*/
+{
+cout<<"\n Invalid Days ";
+exit(0);
+}
+break;
+case 2:
+//so funkcijata break se pominuva na vtoriot mesec odnosno februari i se ukazuva deak samo toj ima 28 dena
+{
+if(d.day>29)
+{
+cout<<"\n Invalid Days ";
+exit(0);
+}
+}
+{
+if  (d.day>28) 
+{
+cout<<"\n Invalid Days ";
+exit(0);
+}
+}
+break;
+}
+}
+int main()
+{
+date d;
+cout<<"\n Enter Date \n";
+cout<<"\n ------------------";
+cin>>d;
+cout<<d;
+
+  time_t rawtime;
+  struct tm * timeinfo;
+  
+/*vo ovaa zadaca so pomosh na local time
+se prikazuva lokalnoto
+vreme koe sto e vo momentot
+koga ke se kompajlira zadacata*/
+
+  time (&rawtime);
+  timeinfo = localtime (&rawtime);
+  printf ("Current local time and date: %s", asctime(timeinfo));
+
+  return 0;
+}
