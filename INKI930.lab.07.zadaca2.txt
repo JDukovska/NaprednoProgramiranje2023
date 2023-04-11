@@ -1,0 +1,63 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+class operations {
+//definiranje klasa
+public:
+int num1, num2;
+//definiranje na dve promenivi
+public:
+void input() {
+cout << "Enter two numbers to perform operations on: \n";
+cin >> num1 >> num2;
+cout << "\n";
+
+}
+public:
+void addition() {
+cout << "Addition = " << num1 + num2;
+cout << "\n";
+}
+void subtraction() {
+cout << "Subtraction = " << num1 - num2;
+cout << "\n";
+}
+void multiplication() {
+cout << "Multiplication = " << num1 * num2;
+cout << "\n";
+}
+void division() {
+cout << "Division = " << (float) num1 / num2;
+cout << "\n";
+}
+void degree() {
+cout << "Pow = " << pow(num1,num2);
+cout << "\n";
+}
+void edegree() {
+cout << "Pow of e = " << pow(num1,num2);
+cout << "\n";
+}
+};
+//definiranje na metodite koi se izvrshuvaat na zadadente broevi vo klasata
+int main() {
+cout << " ===== Program to perform basic operations using Class, in CPP ===== \n\n";
+//deklariranje na klasi vo funkcijata od nadvoreshni klasi
+operations op;
+cout << "\nCalling the input() function from the main() method\n";
+op.input();
+cout << "\nCalling the addition() function from the main() method\n";
+op.addition();
+cout << "\nCalling the subtraction() function from the main() method\n";
+op.subtraction();
+cout << "\nCalling the multiplication() function from the main() method\n";
+op.multiplication();
+cout << "\nCalling the division() function from the main() method\n";
+op.division();
+cout << "\nCalling the degree() function from the main() method\n";
+op.degree();
+cout << "\nCalling the edegree() function from the main() method\n";
+op.edegree();
+cout << "\nExiting the main() method\n\n\n";
+return 0;
+}
