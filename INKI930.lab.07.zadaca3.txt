@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+//definiranje klasa so ime shape
+class Shape {
+//promenlivite na zastitenite clenovi se dostapni samo vo ovaa klasa
+
+protected:
+
+float width, height;
+//public clenovi se dostapni sekade
+public:
+void setDimensions(float w, float h) {
+cout << "Setting the Dimensions using the parent Class: Shape\n";
+cout << "The dimensions are: " << w << " and " << h << "\n\n";
+width = w;
+height = h;
+}
+};
+
+//klasata na cetiriagolnikot  ja nasleduva klasata shape
+class Rectangle: public Shape {
+
+public: float area() {
+return (width * height);
+}
+};
+//klasata na triagolnikot ja nasleduva klasata shape
+class Triangle: public Shape {
+
+public: float area() {
+return (width * height / 2);
+}
+};
+//definiranje na metoda za prifakjanje na elementite od shape
+int main() {
+cout << " ===== Program to demonstrate the concept of Hierarchial Inheritence in CPP===== \n"<< endl;
+//definiranje klasa za prifakjanje na elementite od klasata
+Rectangle rectangle;
+Triangle triangle;
+rectangle.setDimensions(93, 0);
+triangle.setDimensions(9, 30);
+cout << "\nArea of the Rectangle computed using Rectangle Class is : " <<
+rectangle.area() << "\n\n\n";
+cout << "Area of the Triangle computed using Triangle Class is: " << triangle.area();
+cout << "\n\n\n";
+return 0;
+
+}
